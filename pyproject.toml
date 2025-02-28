@@ -7,10 +7,12 @@ authors = [
     { name = "Ender", email = "ndxendernight@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "typer>=0.15.2",
+]
 
 [project.scripts]
-dotmgr = "dotmgr:main"
+dotmgr = "dotmgr.cli:app"
 
 [build-system]
 requires = ["hatchling"]
