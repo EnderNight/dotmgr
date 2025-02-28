@@ -17,7 +17,7 @@ def remove(config: Annotated[Path, typer.Argument()]):
         with open(db_file_path) as db_file:
             db: list = json.load(db_file)
 
-    filtered_db_path = [str(path) for path in db if Path(path) != config.absolute()]
+    filtered_db_path = [path for path in db if Path(path) != config.absolute()]
 
     with open(db_file_path, "w") as db_file:
         json.dump(filtered_db_path, db_file)
