@@ -1,14 +1,14 @@
 from pathlib import Path
+from typing_extensions import Annotated
 
 import json
-import tarfile
 import typer
 
 app = typer.Typer()
 
 
 @app.command()
-def snapshot():
+def remove(config: Annotated[Path, typer.Argument()]):
     db_file_path = Path.home() / ".local/share/dotmgr/db.json"
 
     db: [str] = []
@@ -17,6 +17,7 @@ def snapshot():
         with open(db_file_path) as db_file:
             db: list = json.load(db_file)
 
-    with tarfile.open("dotfiles.tar.gz", "w:gz") as tar:
-        for path in db:
-            tar.add(path, arcname=Path(path).name)
+    filtered_db_path = [str(path) for path in db if Path(path) != config.absolute()]
+
+    with open(db_file_path, "w") as db_file:
+        json.dump(filtered_db_path, db_file)
