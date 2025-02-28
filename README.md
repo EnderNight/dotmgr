@@ -1,0 +1,3 @@
+# dotmgr
+
+Dotfiles manager
