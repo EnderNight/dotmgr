@@ -7,8 +7,11 @@ import typer
 app = typer.Typer()
 
 
-@app.command()
+@app.command(short_help="Create a snapshot archive of saved configurations")
 def snapshot():
+    """
+    Create a snapshot archive of saved configurations.
+    """
     db_file_path = Path.home() / ".local/share/dotmgr/db.json"
 
     db: [str] = []

@@ -7,8 +7,11 @@ import typer
 app = typer.Typer()
 
 
-@app.command(name="list")
+@app.command(name="list", short_help="List saved configurations")
 def list_config():
+    """
+    List saved configurations.
+    """
     db_file_path = Path.home() / ".local/share/dotmgr/db.json"
 
     db: [str] = []
